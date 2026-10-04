@@ -1,0 +1,16 @@
+# 忽略大资料与课件文件
+学习_资料/
+*.pdf
+
+# Python 缓存与字节码
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter 临时文件
+.ipynb_checkpoints/
+
+# 本地虚拟环境与IDE配置
+.venv/
+.idea/
+.vscode/
