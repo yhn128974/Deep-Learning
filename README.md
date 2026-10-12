@@ -1,2 +1,26 @@
-# Deep-Learning
-Deep Learning Repository
+# 个人学习周报
+
+**周期**：2026年10月5日 至 2026年10月12日
+**学习主题**：PyTorch 模拟线性回归实战 & 通境国际创新创业创意挑战赛备赛
+
+---
+
+### 一、 本周核心学习成果
+
+1. **PyTorch 核心基石与自动微分**：
+   - 掌握 Tensor 张量创建、维度变换（view/reshape/squeeze/unsqueeze）与广播机制。
+   - 深入理解 Autograd 自动求导机制，掌握 requires_grad=True 追踪梯度与动态计算图反向传播逻辑。
+
+2. **PyTorch 模拟线性回归实战**：
+   - 手动构建线性关系数据加噪声，初始化参数 W 与 b，通过矩阵乘法前向传播。
+   - 采用 MSE 计算损失，执行 .backward() 自动求导；利用 torch.no*grad() 沿负梯度方向更新权重，并严格执行 grad.zero*() 梯度清零，实现多轮迭代收敛。
+   - 对比掌握直接调用 nn.Linear 模块与 torch.optim.SGD 优化器的标准封装流程。
+
+3. **学科竞赛推进**：
+   - 推进“通境国际创新创业创意挑战赛（智影未来·艺创无界）”复赛阶段的创作与备赛准备工作，初赛为游戏赛道总榜第三名。
+
+---
+
+### 二、 下周学习计划
+
+推进至**神经网络核心组件与多层感知机（MLP）**：学习常见激活函数（ReLU、Sigmoid、Softmax）与交叉熵损失（CrossEntropyLoss），结合 Dataset 与 DataLoader 完成全连接神经网络搭建与训练。
