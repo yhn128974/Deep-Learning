@@ -119,7 +119,6 @@ def train_data(x,y,coef):
 
     
     # 绘制训练过程中的损失曲线图
-<<<<<<< HEAD
 
     plt.plot(range(epochs),loss_list)
     plt.title("损失曲线变化图")
@@ -130,14 +129,6 @@ def train_data(x,y,coef):
 
         # plt.scatter(x,y)
 
-=======
-    plt.plot(loss_list)
-    plt.xlabel("epochs") # 横坐标：表示训练的轮数（epochs）
-    plt.ylabel("loss") # 纵坐标：表示损失值
-    plt.title("loss curve") # 图表的标题
-    plt.show()
-
->>>>>>> 33238f197b54cb0bc6da9060848bfb4bea3742d2
 
 if __name__=='__main__':
     # 调用函数，进行数据创建
