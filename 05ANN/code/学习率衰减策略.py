@@ -205,8 +205,60 @@ def demo03():
     plt.show()
 
 # 周期重启的余弦退火策略
+def demo04():
+    lr,epochs,iterations_per_epoch = 0.1,200,10
+    # 真实值
+    y_true=torch.tensor([0])
+    # 输入值
+    x=torch.tensor([1.0],dtype=torch.float32)
+    # 参数w
+    w=torch.tensor([1.0],requires_grad=True,dtype=torch.float32)
+
+    #优化器参数：参数一：待训练的权重参数；参数二：学习率；参数三：动量
+    optimizer=optim.SGD([w],lr=lr,momentum=0.9)
+
+    #周期重启的余弦退火策略 ：参数一：优化器；参数二：周期；参数三：最小学习率，参数三：周期倍增因子，默认为一
+    scheduler = optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer,T_0=50,eta_min=0,T_mult=1)
+
+    # 创建两个列表，分别表示训练轮数，每轮训练的学习率
+    epoch_list,lr_list = [],[]
+
+    # 
+    for epoch in range(epochs):
+
+        epoch_list.append(epoch)
+
+        lr_list.append(scheduler.get_last_lr()[0])  #get_last_l获取上一次的学习率
+
+        # 训练参数安装批次训练
+        for batch in range(iterations_per_epoch):
+
+            y_pred=w*x
+
+            loss=(y_pred-y_true)**2
+            # 优化器导数归零
+            optimizer.zero_grad()
+            # 损失函数求导
+            loss.backward()
+            # 优化器更新权重
+            optimizer.step()
+
+        # 更新学习率
+        scheduler.step()
+   
+    #打印结果
+    print(f'scheduler:{scheduler}')
+
+    # 可视化
+    plt.plot(epoch_list,lr_list,label='StepLR (step=50, gamma=0.5)')
+    plt.xlabel('Epoch')
+    plt.ylabel('Learning Rate')
+    plt.title('Learning Rate Decay')
+    plt.legend()
+    plt.show()
 
 if __name__=='__main__':
     # demo01()
     # demo02()
-    demo03()
+    # demo03()
+    demo04()

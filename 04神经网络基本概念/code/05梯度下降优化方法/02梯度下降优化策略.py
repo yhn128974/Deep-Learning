@@ -170,9 +170,41 @@ def adam_method():
     optimizer.step()
     print(f'w:{w},w.grad:{w.grad}') 
 
-# AdamW
+# --AdamW
 def adamw_method():
-    pass
+
+    print("AdamW")
+    # 1.初始化模型参数w
+    w = torch.tensor([1.0],requires_grad=True, dtype=torch.float32)
+    print(f"初始权重w:{w}")
+    # 2.定义损失函数,并计算损失值
+    loss = w**2
+    # loss'=2w
+    # 3.创建优化器，动量法Momentum
+    # optimizer = optim.SGD([w],lr=0.01,momentum=0.9)
+    # AdaGrad自适应学习率
+    # optimizer = optim.Adagrad([w],lr=0.01)
+    # RMSProp自适应学习率
+    # optimizer = optim.RMSprop([w],lr=0.01)
+    # Adam自适应矩估计
+    # optimizer = optim.Adam([w],lr=0.01,decoupled_weight_decay=True,weight_decay=1e-2)
+    # AdamW
+    # [w]:待训练的模型参数；lr：学习率，weight_decay：权重衰减因子，λ*w
+    optimizer = optim.AdamW([w],lr=0.01,weight_decay=1e-2)
+    # 4.梯度清零
+    optimizer.zero_grad()
+    # 5.反向传播，计算梯度
+    loss.mean().backward()
+    # 6.更新参数，第一次更新参数
+    optimizer.step()
+    print(f"第一次更新参数：w:{w.data}, w.grad:{w.grad.data}")
+    # 7.第二次更新参数
+    loss = w ** 2
+    optimizer.zero_grad()
+    loss.mean().backward()
+    optimizer.step()
+    print(f"第二次更新参数：w:{w.data}, w.grad:{w.grad.data}")
+    ...
 
 if __name__ == '__main__':
     # momentum_method()
