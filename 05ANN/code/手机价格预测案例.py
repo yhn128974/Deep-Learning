@@ -230,7 +230,7 @@ if __name__=='__main__':
     model=PhonePriceModel()
     # train_loss_list,train_accs= model.fit(train_dataset)
     # model.plot_train_process(train_loss_list,train_accs)
-    test_loss,test_acc=model.evaluate(test_dataset)
+    test_loss,test_acc=model.evaluate(test_dataset) 
     
 
 
