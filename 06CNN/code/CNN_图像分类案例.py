@@ -61,10 +61,7 @@ def create_dataloader():
         download=True
     )
     return train_dataset,test_dataset
-
-
-
-
+    
 # 2.搭建神经网络
 
 class ImageModel(nn.Module):
@@ -80,8 +77,8 @@ class ImageModel(nn.Module):
         self.conv2=nn.Conv2d(in_channels=6,out_channels=16,kernel_size=3,stride=1,padding=0)
         # 池化层2
         self.pool2=nn.MaxPool2d(kernel_size=2,stride=2,padding=0)
-
         # 全连接层 
+
         # 输入576，输出120
         self.Linear1=nn.Linear(in_features=16*6*6,out_features=120)
         self.Linear2=nn.Linear(in_features=120,out_features=84)
